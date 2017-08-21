@@ -1,30 +1,33 @@
 ---
 layout: page
-title: About Us
-description: TheReviewIndex aspires to simplify the discovery and research process for gadgets and help you find the right products.
+title: About Monochrome
+description: This page describes monochrome.
 ---
+## About
+Monochrome is a minimal, responsive theme created for Jekyll. The goal of Monochrome is to provide a ready to use, plug and play theme for those who want to set up a blog, and focus solely on the content.
+
+## Features
+
+- Completely responsive and mobile first
+- Clean SEO friendly URLs, auto-generated from post title (no messy dates in the url)
+- SEO title/description integration
+- Sitemap ready
+- Easy customization for header, footer, navigation links, colors, favicon etc
+- Default Monochrome Color Palette - black, white, greys
+
+### Setup
+
+Monochrome may be installed by simply downloading the .zip folder from the [repository on Github](https://github.com/thereviewindex/monochrome/archive/master.zip).
+
+After extracting the content from the folder into the selected directory, you can type ``jekyll serve`` from the terminal, than open your browser to ``0.0.0.0:4000/monochrome/`` and you will find it there.
+
+Additionally it is possible to fork the repository and use Github Pages as hosting. By following this way it will be enough to change the ``baseurl`` value into the ``_config.yml`` file, with the directory name of your project (for example /blog) or simply with a "/" (slash) if you want install Monochrome in the root. 
 
 
-## About Us
 
-&nbsp;
+For further details on Monochrome, please visit the [repository on Github](https://github.com/thereviewindex/monochrome/).
 
-We are TheReviewIndex.com - here to help you discover the right gadgets for your very individual needs.
-
-The internet is a source of a humongous amounts of unstructured content for all sorts of products, in the form of blogs, videos, user and expert reviews, etc. It is almost impossible for anyone to scour all of this disparate (sometimes spammy) data, with contradictory opinions, and thereafter make an ideal, or at least optimal, purchase decision.
-
-To help tackle these issues, we created [The Review Index](https://thereviewindex.com) - a discovery and research engine, which simplifies the process of researching products online. We crawl various sources on the internet, and aggregate opinions and reviews for products. Leveraging cutting-edge Machine Learning Algorithms and Artificial Neural Networks, we detect fine-grained topics and implicit sentiment, after blacklisting fraudulant content. This information is churned and presented as an unbiased, feature-wise summary scorecard of the aggregate opinion, along with the relevant pros and cons. Not just that, you can also use the search engine to discover products based on your specific feature requirements. Lastly, the engine compares the prices for products across all the online stores, to conclude which one has the most cost-effective offering.
-
-We launched a public beta on January 11th, with three categories - mobiles, televisions and speakers. At the point of writing this, we have added three more categories - routers, microwaves and washing machines,
-
-This is just the beginning of our journey. We are working on adding new categories (in electronics, home appliances, etc.) and iterating over the product while we are at it. 
-
-There is a lot of data waiting to be churned and presented - stay tuned! 
+![Monochrome](img/monochrome01.png "monochrome")
 
 
-&nbsp;
-
-&nbsp;
-
-&nbsp;
 
