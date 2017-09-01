@@ -31,8 +31,7 @@ sns.heatmap(corr, annot=True, cmap='Blues')
 
 
 
-
-![png](IrisData_files/IrisData_3_1.png)
+![IrisData_3_1.png](/IrisData_files/IrisData_3_1.png)
 
 
 
