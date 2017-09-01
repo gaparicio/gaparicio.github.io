@@ -3,7 +3,6 @@ title: Iris dataViz
 description: Iris dataViz
 header: Iris 
 ---
-<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
 <title>Iris Data</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
