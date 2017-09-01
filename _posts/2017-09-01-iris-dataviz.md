@@ -1,8 +1,3 @@
----
-title: Iris dataViz
-description: Iris dataViz
-header: Iris 
----
 
 # Iris Dataset Viz
 
