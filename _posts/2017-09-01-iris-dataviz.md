@@ -72,7 +72,7 @@ scatter_matrix(df, c=colors, figsize=(10, 10),marker='o', s=20, alpha=.8)
 
 
 
-![png](IrisData_files/IrisData_4_1.png)
+![png](assets/IrisData_4_1.png)
 
 
 
@@ -90,7 +90,7 @@ andrews_curves(df, 'Species',colormap='Blues')
 
 
 
-![png](IrisData_files/IrisData_5_1.png)
+![png](assets/IrisData_5_1.png)
 
 
 
@@ -108,7 +108,7 @@ parallel_coordinates(df, 'Species',colormap='Blues')
 
 
 
-![png](IrisData_files/IrisData_6_1.png)
+![png](assets/IrisData_6_1.png)
 
 
 
@@ -126,7 +126,7 @@ radviz(df, 'Species',colormap='Blues')
 
 
 
-![png](IrisData_files/IrisData_7_1.png)
+![png](assets/IrisData_7_1.png)
 
 
 
