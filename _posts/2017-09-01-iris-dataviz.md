@@ -1,6 +1,4 @@
----
-image: /IrisData_files/IrisData_3_1.png
-----
+
 
 ```python
 import pandas as pd
@@ -33,7 +31,7 @@ sns.heatmap(corr, annot=True, cmap='Blues')
 
 
 
-![IrisData_3_1.png](IrisData_files/IrisData_3_1.png){:class="img-responsive"}
+![IrisData_3_1.png](/IrisData_files/IrisData_3_1.png)
 
 
 
