@@ -1,4 +1,6 @@
-![png](assets/IrisData_3_1.png)
+---
+description: Iris DataViz
+---
 
 ```python
 import pandas as pd
