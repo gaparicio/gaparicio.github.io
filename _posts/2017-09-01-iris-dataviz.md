@@ -30,7 +30,7 @@ sns.heatmap(corr, annot=True, cmap='Blues')
     <matplotlib.axes._subplots.AxesSubplot at 0xb2a7940>
 
 
-![png](gaparicio.github.io\_posts\IrisData_files\IrisData_3_1.png)
+![png](gaparicio.github.io\_posts\IrisData_files\IrisData_3_1.png){:class="img-responsive"}
 
 
 
