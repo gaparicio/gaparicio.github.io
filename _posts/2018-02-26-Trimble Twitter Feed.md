@@ -1,0 +1,649 @@
+
+
+```python
+# General:
+import tweepy           # To consume Twitter's API
+import pandas as pd     # To handle data
+import numpy as np      # For number computing
+
+# For plotting and visualization:
+from IPython.display import display
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+```
+
+
+```python
+import tweepy
+from tweepy import OAuthHandler
+ 
+consumer_key = ''
+consumer_secret = ''
+
+access_token = ''
+access_secret = ''
+ 
+auth = OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_secret)
+ 
+api = tweepy.API(auth)
+
+```
+
+
+```python
+# We create a tweet list as follows:
+tweets = api.user_timeline(screen_name="TrimbleCorpNews", count=200)
+print("Number of tweets extracted: {}.\n".format(len(tweets)))
+
+# We print the most recent 5 tweets:
+print("5 recent tweets:\n")
+for tweet in tweets[:5]:
+    print(tweet.text)
+    print()
+```
+
+    Number of tweets extracted: 200.
+    
+    5 recent tweets:
+    
+    RT @J77Beckham: Off to the @TrimbleCorpNews Buildings Business Forum Denver, Colorado. Lots of news around @Tekla @TrimbleConnect @ebuilder…
+    
+    RT @Jurbols: Just having fun practicing @TrimbleCorpNews #totalstation S7 #scanning @Geometius https://t.co/npDh79OLtQ
+    
+    @MDYachty Hey Mark - best to check with the SketchUp team! https://t.co/HJ13A9Iz0m
+    
+    @teslascoil15 Try this support feature: https://t.co/Zfv8y6trLX
+    
+    RT @TrimbleNews: The official hard hat solution for Microsoft HoloLens https://t.co/comhGZTrkS     RT @HoloLens: We heard you! Learn about…
+    
+    
+
+
+```python
+# We create a pandas dataframe as follows:
+data = pd.DataFrame(data=[tweet.text for tweet in tweets], columns=['Tweets'])
+
+# We display the first 10 elements of the dataframe:
+display(data.head(10))
+```
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tweets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RT @J77Beckham: Off to the @TrimbleCorpNews Bu...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RT @Jurbols: Just having fun practicing @Trimb...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>@MDYachty Hey Mark - best to check with the Sk...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>@teslascoil15 Try this support feature: https:...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>RT @TrimbleNews: The official hard hat solutio...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Trimble's RTX Real-Time eXtended high-accuracy...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>RT @KORECGroup: Ever wanted to get inside a to...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Trimble announced today that Swedish train ope...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>RT @CUDenBusiness: At the International Busine...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>RT @SketchUp: Ready for some Friday SketchUp p...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+```python
+data.to_csv('180226_Tweets_export.csv',index=False)
+```
+
+
+```python
+# Internal methods of a single tweet object:
+print(dir(tweets[0]))
+```
+
+    ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_api', '_json', 'author', 'contributors', 'coordinates', 'created_at', 'destroy', 'entities', 'favorite', 'favorite_count', 'favorited', 'geo', 'id', 'id_str', 'in_reply_to_screen_name', 'in_reply_to_status_id', 'in_reply_to_status_id_str', 'in_reply_to_user_id', 'in_reply_to_user_id_str', 'is_quote_status', 'lang', 'parse', 'parse_list', 'place', 'retweet', 'retweet_count', 'retweeted', 'retweeted_status', 'retweets', 'source', 'source_url', 'text', 'truncated', 'user']
+    
+
+
+```python
+# We print info from the first tweet:
+print(tweets[0].id)
+print(tweets[0].created_at)
+print(tweets[0].source)
+print(tweets[0].favorite_count)
+print(tweets[0].retweet_count)
+print(tweets[0].geo)
+print(tweets[0].coordinates)
+print(tweets[0].entities)
+```
+
+    968172744520056832
+    2018-02-26 17:15:44
+    Twitter Web Client
+    0
+    0
+    None
+    None
+    {'user_mentions': [{'indices': [3, 14], 'id': 281979488, 'screen_name': 'J77Beckham', 'name': 'Jay Beckham', 'id_str': '281979488'}, {'indices': [27, 43], 'id': 1499430715, 'screen_name': 'TrimbleCorpNews', 'name': 'Trimble', 'id_str': '1499430715'}, {'indices': [107, 113], 'id': 32500983, 'screen_name': 'Tekla', 'name': 'Tekla Software', 'id_str': '32500983'}, {'indices': [114, 129], 'id': 2885570551, 'screen_name': 'TrimbleConnect', 'name': 'TrimbleConnect', 'id_str': '2885570551'}, {'indices': [130, 139], 'id': 56706963, 'screen_name': 'ebuilder', 'name': 'e-Builder', 'id_str': '56706963'}], 'symbols': [], 'hashtags': [], 'urls': []}
+    
+
+
+```python
+# We add relevant data:
+data['len']  = np.array([len(tweet.text) for tweet in tweets])
+data['ID']   = np.array([tweet.id for tweet in tweets])
+data['Date'] = np.array([tweet.created_at for tweet in tweets])
+data['Source'] = np.array([tweet.source for tweet in tweets])
+data['Likes']  = np.array([tweet.favorite_count for tweet in tweets])
+data['RTs']    = np.array([tweet.retweet_count for tweet in tweets])
+```
+
+
+```python
+# Display of first 10 elements from dataframe:
+display(data.head(10))
+```
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tweets</th>
+      <th>len</th>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Source</th>
+      <th>Likes</th>
+      <th>RTs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RT @J77Beckham: Off to the @TrimbleCorpNews Bu...</td>
+      <td>140</td>
+      <td>968172744520056832</td>
+      <td>2018-02-26 17:15:44</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RT @Jurbols: Just having fun practicing @Trimb...</td>
+      <td>118</td>
+      <td>968172293963710465</td>
+      <td>2018-02-26 17:13:57</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>@MDYachty Hey Mark - best to check with the Sk...</td>
+      <td>82</td>
+      <td>967128736549105664</td>
+      <td>2018-02-23 20:07:13</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>@teslascoil15 Try this support feature: https:...</td>
+      <td>63</td>
+      <td>967128372634464256</td>
+      <td>2018-02-23 20:05:47</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>RT @TrimbleNews: The official hard hat solutio...</td>
+      <td>139</td>
+      <td>967128050453299200</td>
+      <td>2018-02-23 20:04:30</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Trimble's RTX Real-Time eXtended high-accuracy...</td>
+      <td>139</td>
+      <td>966708780921737216</td>
+      <td>2018-02-22 16:18:28</td>
+      <td>Twitter Web Client</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>RT @KORECGroup: Ever wanted to get inside a to...</td>
+      <td>140</td>
+      <td>966697836380393472</td>
+      <td>2018-02-22 15:34:59</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Trimble announced today that Swedish train ope...</td>
+      <td>140</td>
+      <td>966336636069056513</td>
+      <td>2018-02-21 15:39:42</td>
+      <td>Twitter Web Client</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>RT @CUDenBusiness: At the International Busine...</td>
+      <td>140</td>
+      <td>964565809845678080</td>
+      <td>2018-02-16 18:23:04</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>RT @SketchUp: Ready for some Friday SketchUp p...</td>
+      <td>140</td>
+      <td>964565379254308864</td>
+      <td>2018-02-16 18:21:21</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+```python
+# We extract the mean of lenghts:
+mean = np.mean(data['len'])
+
+print("The lenght's average in tweets: {}".format(mean))
+```
+
+    The lenght's average in tweets: 130.245
+    
+
+
+```python
+# We extract the tweet with more FAVs and more RTs:
+
+fav_max = np.max(data['Likes'])
+rt_max  = np.max(data['RTs'])
+
+fav = data[data.Likes == fav_max].index[0]
+rt  = data[data.RTs == rt_max].index[0]
+
+# Max FAVs:
+print("The tweet with more likes is: \n{}".format(data['Tweets'][fav]))
+print("Number of likes: {}".format(fav_max))
+print("{} characters.\n".format(data['len'][fav]))
+
+# Max RTs:
+print("The tweet with more retweets is: \n{}".format(data['Tweets'][rt]))
+print("Number of retweets: {}".format(rt_max))
+print("{} characters.\n".format(data['len'][rt]))
+```
+
+    The tweet with more likes is: 
+    Trimble and VolkerWessels announced today a strategic relationship to standardize VolkerWessels' projects on a key… https://t.co/Uy4GepLuUY
+    Number of likes: 13
+    139 characters.
+    
+    The tweet with more retweets is: 
+    RT @SketchUp: SketchUp Pro 2018 came with all sorts of goodies. Have you explored the fruits of LayOut yet? https://t.co/3NDOZVmTMG #archit…
+    Number of retweets: 28
+    140 characters.
+    
+    
+
+
+```python
+# We create time series for data:
+
+tlen = pd.Series(data=data['len'].values, index=data['Date'])
+tfav = pd.Series(data=data['Likes'].values, index=data['Date'])
+tret = pd.Series(data=data['RTs'].values, index=data['Date'])
+```
+
+
+```python
+# Lenghts along time:
+tlen.plot(figsize=(16,4), color='r');
+```
+
+
+![png](2018-02-26-Trimble Twitter Feed_01.png)
+
+
+
+```python
+# Likes vs retweets visualization:
+tfav.plot(figsize=(16,4), label="Likes", legend=True)
+tret.plot(figsize=(16,4), label="Retweets", legend=True);
+```
+
+
+![png](2018-02-26-Trimble Twitter Feed_02.png)
+
+
+
+```python
+# We obtain all possible sources:
+sources = []
+for source in data['Source']:
+    if source not in sources:
+        sources.append(source)
+
+# We print sources list:
+print("Creation of content sources:")
+for source in sources:
+    print("* {}".format(source))
+```
+
+    Creation of content sources:
+    * Twitter Web Client
+    * Google
+    
+
+
+```python
+# We create a numpy vector mapped to labels:
+percent = np.zeros(len(sources))
+
+for source in data['Source']:
+    for index in range(len(sources)):
+        if source == sources[index]:
+            percent[index] += 1
+            pass
+
+percent /= 100
+
+# Pie chart:
+pie_chart = pd.Series(percent, index=sources, name='Sources')
+pie_chart.plot.pie(fontsize=11, autopct='%.2f', figsize=(6, 6));
+```
+
+
+![png](2018-02-26-Trimble Twitter Feed_03.png)
+
+
+
+```python
+from textblob import TextBlob
+import re
+
+def clean_tweet(tweet):
+    '''
+    Utility function to clean the text in a tweet by removing 
+    links and special characters using regex.
+    '''
+    return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
+
+def analize_sentiment(tweet):
+    '''
+    Utility function to classify the polarity of a tweet
+    using textblob.
+    '''
+    analysis = TextBlob(clean_tweet(tweet))
+    if analysis.sentiment.polarity > 0:
+        return 1
+    elif analysis.sentiment.polarity == 0:
+        return 0
+    else:
+        return -1
+```
+
+
+```python
+# We create a column with the result of the analysis:
+data['SA'] = np.array([ analize_sentiment(tweet) for tweet in data['Tweets'] ])
+
+# We display the updated dataframe with the new column:
+display(data.head(10))
+```
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tweets</th>
+      <th>len</th>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Source</th>
+      <th>Likes</th>
+      <th>RTs</th>
+      <th>SA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RT @J77Beckham: Off to the @TrimbleCorpNews Bu...</td>
+      <td>140</td>
+      <td>968172744520056832</td>
+      <td>2018-02-26 17:15:44</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RT @Jurbols: Just having fun practicing @Trimb...</td>
+      <td>118</td>
+      <td>968172293963710465</td>
+      <td>2018-02-26 17:13:57</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>@MDYachty Hey Mark - best to check with the Sk...</td>
+      <td>82</td>
+      <td>967128736549105664</td>
+      <td>2018-02-23 20:07:13</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>@teslascoil15 Try this support feature: https:...</td>
+      <td>63</td>
+      <td>967128372634464256</td>
+      <td>2018-02-23 20:05:47</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>RT @TrimbleNews: The official hard hat solutio...</td>
+      <td>139</td>
+      <td>967128050453299200</td>
+      <td>2018-02-23 20:04:30</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>3</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Trimble's RTX Real-Time eXtended high-accuracy...</td>
+      <td>139</td>
+      <td>966708780921737216</td>
+      <td>2018-02-22 16:18:28</td>
+      <td>Twitter Web Client</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>RT @KORECGroup: Ever wanted to get inside a to...</td>
+      <td>140</td>
+      <td>966697836380393472</td>
+      <td>2018-02-22 15:34:59</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Trimble announced today that Swedish train ope...</td>
+      <td>140</td>
+      <td>966336636069056513</td>
+      <td>2018-02-21 15:39:42</td>
+      <td>Twitter Web Client</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>RT @CUDenBusiness: At the International Busine...</td>
+      <td>140</td>
+      <td>964565809845678080</td>
+      <td>2018-02-16 18:23:04</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>RT @SketchUp: Ready for some Friday SketchUp p...</td>
+      <td>140</td>
+      <td>964565379254308864</td>
+      <td>2018-02-16 18:21:21</td>
+      <td>Twitter Web Client</td>
+      <td>0</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+```python
+# We construct lists with classified tweets:
+
+pos_tweets = [ tweet for index, tweet in enumerate(data['Tweets']) if data['SA'][index] > 0]
+neu_tweets = [ tweet for index, tweet in enumerate(data['Tweets']) if data['SA'][index] == 0]
+neg_tweets = [ tweet for index, tweet in enumerate(data['Tweets']) if data['SA'][index] < 0]
+```
+
+
+```python
+# We print percentages:
+
+print("Percentage of positive tweets: {}%".format(len(pos_tweets)*100/len(data['Tweets'])))
+print("Percentage of neutral tweets: {}%".format(len(neu_tweets)*100/len(data['Tweets'])))
+print("Percentage de negative tweets: {}%".format(len(neg_tweets)*100/len(data['Tweets'])))
+```
+
+    Percentage of positive tweets: 47.0%
+    Percentage of neutral tweets: 45.5%
+    Percentage de negative tweets: 7.5%
+    
+
+
+```python
+
+```
