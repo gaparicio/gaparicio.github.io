@@ -385,7 +385,7 @@ tlen.plot(figsize=(16,4), color='r');
 ```
 
 
-![png](2018-02-26-Trimble Twitter Feed_01.png)
+![png](2018-02-26-TrimbleTwitterFeed_01.png)
 
 
 
@@ -396,7 +396,7 @@ tret.plot(figsize=(16,4), label="Retweets", legend=True);
 ```
 
 
-![png](2018-02-26-Trimble Twitter Feed_02.png)
+![png](2018-02-26-TrimbleTwitterFeed_02.png)
 
 
 
@@ -437,7 +437,7 @@ pie_chart.plot.pie(fontsize=11, autopct='%.2f', figsize=(6, 6));
 ```
 
 
-![png](2018-02-26-Trimble Twitter Feed_03.png)
+![png](2018-02-26-TrimbleTwitterFeed_03.png)
 
 
 
