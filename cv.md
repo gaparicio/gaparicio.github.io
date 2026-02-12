@@ -1,0 +1,6 @@
+---
+layout: default
+title: CV
+---
+
+<iframe src="https://docs.google.com/document/d/e/2PACX-1vQjk_f-yjzn1caOz6RZya1VM6Buv0MNUb0qDHFh1fiOdFh2zsk13mfjzeeaugyttiA75p7MOhBltcVo/pub?embedded=true" width="100%" height="600"></iframe>

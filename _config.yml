@@ -1,41 +1,30 @@
- # Site settings
-title: German W Aparicio Jr | 
-description: "CV and Data Science Work Samples"
+# GitHub Pages / Jekyll Minimal theme configuration
+
+title: German W Aparicio Jr
+description: CV and Data Science Work Samples
 url: "https://gaparicio.github.io"
+baseurl: ""
+
 author:
-  name: "German W Apricio Jr"
-  email: "gapariciojr@gmail.com"
-  url: "https://gaparicio.github.io"
+  name: German W Aparicio Jr
+  email: gapariciojr@gmail.com
 
-# Build settings
-baseurl: /gaparicio.github.io # Change this to your relative path (ex: /blog/), or leave just a /
-markdown: kramdown
-source: .
-destination: ./_site
-permalink: /:title
-paginate: 8
-paginate_path: /page:num/
+theme: jekyll-theme-minimal
+show_downloads: false
 
-# Default values
+# Defaults
+# - use Minimal's `default` layout for site pages
+# - use Minimal's `post` layout for blog entries
 defaults:
   -
     scope:
       path: ""
-      type: "posts"
+      type: pages
     values:
-      layout: "post"
-
-# Plugins
-gems:
-  - jekyll-paginate
-  - jekyll-sitemap
-
-# Custom variables
-version: "1.0.0"
-
-# Options
-custom_header: true
-custom_nav_footer: true
-reverse: false
-
-theme: jekyll-theme-minimal
+      layout: default
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
