@@ -13,8 +13,8 @@ theme: jekyll-theme-minimal
 show_downloads: false
 
 # Defaults
-# - use Minimal's `default` layout for site pages
-# - use Minimal's `post` layout for blog entries
+# - use Minimal's `default` layout for site pages and posts
+#   (the Minimal theme does not ship a `post` layout)
 defaults:
   -
     scope:
@@ -27,4 +27,4 @@ defaults:
       path: ""
       type: posts
     values:
-      layout: post
+      layout: default
