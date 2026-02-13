@@ -7,7 +7,6 @@ baseurl: ""
 
 author:
   name: German W Aparicio Jr
-  email: gapariciojr@gmail.com
 
 theme: jekyll-theme-minimal
 show_downloads: false
